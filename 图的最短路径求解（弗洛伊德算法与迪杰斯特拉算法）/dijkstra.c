@@ -10,8 +10,6 @@ typedef struct graph{
 
 //route数组存放的是在最短路径中该节点的前驱节点
 //返回值为起始点verStart到终点verEnd之间最短路径的权值
-//route存放的是该节点的前驱节点
-//pathWeight存放的是起点到该点的最短路径的权值
 int Dijktra(Graph dstGraph,int verStart,int verEnd,int *pathWeight,int *route){
 	int i,j,min,tmpVer;
 	int visited[dstGraph.vertexNum];
@@ -33,7 +31,8 @@ int Dijktra(Graph dstGraph,int verStart,int verEnd,int *pathWeight,int *route){
 	//每一个循环扩展一个节点
 	for( i = 0 ; i < dstGraph.vertexNum ; i++ ){
 		min = INFINITY;
-		for( j = 1 ; j < dstGraph.vertexNum ; j++ ){
+		for( j = 0 ; j < dstGraph.vertexNum ; j++ ){
+			//从还没有走过的点中选取最近的点
 			if( 0 == visited[j] && pathWeight[j] < min ){
 				min = pathWeight[j];
 				tmpVer = j;
@@ -41,6 +40,7 @@ int Dijktra(Graph dstGraph,int verStart,int verEnd,int *pathWeight,int *route){
 		}
 		
 		visited[tmpVer] = 1;
+		//更新最短路径，如果起始点从已知的路径经过最新加入的点到达该点的权值比从原来的路径到达该点的权值还要小时，更新到达该点的最短路径
 		for( j = 0; j < dstGraph.vertexNum ; j++ ){
 			if( 0 == visited[j] && (pathWeight[tmpVer] + dstGraph.adjList[tmpVer][j]) < pathWeight[j] ){
 				route[j] = tmpVer;
