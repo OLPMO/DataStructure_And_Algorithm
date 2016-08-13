@@ -1,9 +1,11 @@
+
+
 #include <stdio.h>
 
 #define INFINITY 655350
 #define VERTEXT_NUMBER 1000
 
-//这个使用普里姆算法做的
+//本代码使用普里姆算法解决POJ的第2485题
 int graph[VERTEXT_NUMBER][VERTEXT_NUMBER];
 
 int treeNode[VERTEXT_NUMBER];    
