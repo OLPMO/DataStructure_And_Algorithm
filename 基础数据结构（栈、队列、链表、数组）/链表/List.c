@@ -11,9 +11,9 @@ NODE *create_list();
 void traverse_list(NODE *phead);
 bool is_empty(NODE *phead);
 int length_list(NODE *phead);
-bool insert_list(NODE *phead,int pos,int val);  //��pHead��ָ�������ĵ�pos���ڵ�ĺ������һ���µĽ�㣬�ýڵ��ֵ��val�� ����pos��ֵ�Ǵ�1��ʼ
+bool insert_list(NODE *phead,int pos,int val);  //在pHead所指向链表的第pos个节点的后面插入一个新的结点，该节点的值是val， 并且pos的值是从1开始
 bool delete_list(NODE *phead,int pos);
-void sort_list(NODE *phead);//�ɴ�С������
+void sort_list(NODE *phead);//由大到小（降序）
 int main(int argc, char *argv[])
 {
 	NODE *phead;
@@ -21,19 +21,19 @@ int main(int argc, char *argv[])
 	//traverse_list(phead);
     /*if (is_empty(phead))
     {
-		printf("����Ϊ��\n");
+		printf("链表为空\n");
     }
 	else traverse_list(phead);
-	printf("��������Ч�ڵ���Ϊ��%d\n",length_list(phead));
+	printf("链表的有效节点数为：%d\n",length_list(phead));
 	*/
 	/*if(insert_list(phead,-1,9))traverse_list(phead);
-	else printf("����ʧ�ܣ�\n");
+	else printf("插入失败！\n");
 	*/
 	/*if (delete_list(phead,3))
 	{
 		traverse_list(phead);
 	}
-	else printf("ɾ��ʧ�ܣ�\n");
+	else printf("删除失败！\n");
 	*/
 	sort_list(phead);
 	traverse_list(phead);
@@ -46,16 +46,16 @@ NODE *create_list()
 	PHEAD=(NODE *)malloc(sizeof(NODE));
 	if(PHEAD==NULL)
 	{
-		printf("��Ǹ���ڴ����ʧ�ܡ�");
+		printf("抱歉！内存分配失败。");
 		exit(1);
 	}
 	PHEAD->pnext=NULL;
 	PTAIL=PHEAD;
-	printf("��������Ҫ���ɵ������ڵ������");
+	printf("请输入你要生成的链表节点个数：");
 	scanf("%d",&len);
 	for(i=0;i<len;i++)
 	{
-		printf("\n�������%d���ڵ�����ݣ�",i+1);
+		printf("\n请输入第%d个节点的数据：",i+1);
 		scanf("%d",&value);
 		PNEW=(NODE *)malloc(sizeof(NODE));
 		PNEW->data=value;
