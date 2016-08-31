@@ -11,9 +11,10 @@ NODE *create_list();
 void traverse_list(NODE *phead);
 bool is_empty(NODE *phead);
 int length_list(NODE *phead);
-bool insert_list(NODE *phead,int pos,int val);  //åœ¨pHeadæ‰€æŒ‡å‘é“¾è¡¨çš„ç¬¬posä¸ªèŠ‚ç‚¹çš„åé¢æ’å…¥ä¸€ä¸ªæ–°çš„ç»“ç‚¹ï¼Œè¯¥èŠ‚ç‚¹çš„å€¼æ˜¯valï¼Œ å¹¶ä¸”posçš„å€¼æ˜¯ä»1å¼€å§‹
+bool insert_list(NODE *phead,int pos,int val);  //ÔÚpHeadËùÖ¸ÏòÁ´±íµÄµÚpos¸ö½ÚµãµÄºóÃæ²åÈëÒ»¸öĞÂµÄ½áµã£¬¸Ã½ÚµãµÄÖµÊÇval£¬ ²¢ÇÒposµÄÖµÊÇ´Ó1¿ªÊ¼
 bool delete_list(NODE *phead,int pos);
-void sort_list(NODE *phead);//ç”±å¤§åˆ°å°ï¼ˆé™åºï¼‰
+void sort_list(NODE *phead);//ÓÉ´óµ½Ğ¡£¨½µĞò£©
+bool find_list(NODE *phead,int val);
 int main(int argc, char *argv[])
 {
 	NODE *phead;
@@ -21,19 +22,19 @@ int main(int argc, char *argv[])
 	//traverse_list(phead);
     /*if (is_empty(phead))
     {
-		printf("é“¾è¡¨ä¸ºç©º\n");
+		printf("Á´±íÎª¿Õ\n");
     }
 	else traverse_list(phead);
-	printf("é“¾è¡¨çš„æœ‰æ•ˆèŠ‚ç‚¹æ•°ä¸ºï¼š%d\n",length_list(phead));
+	printf("Á´±íµÄÓĞĞ§½ÚµãÊıÎª£º%d\n",length_list(phead));
 	*/
 	/*if(insert_list(phead,-1,9))traverse_list(phead);
-	else printf("æ’å…¥å¤±è´¥ï¼\n");
+	else printf("²åÈëÊ§°Ü£¡\n");
 	*/
 	/*if (delete_list(phead,3))
 	{
 		traverse_list(phead);
 	}
-	else printf("åˆ é™¤å¤±è´¥ï¼\n");
+	else printf("É¾³ıÊ§°Ü£¡\n");
 	*/
 	sort_list(phead);
 	traverse_list(phead);
@@ -46,16 +47,16 @@ NODE *create_list()
 	PHEAD=(NODE *)malloc(sizeof(NODE));
 	if(PHEAD==NULL)
 	{
-		printf("æŠ±æ­‰ï¼å†…å­˜åˆ†é…å¤±è´¥ã€‚");
+		printf("±§Ç¸£¡ÄÚ´æ·ÖÅäÊ§°Ü¡£");
 		exit(1);
 	}
 	PHEAD->pnext=NULL;
 	PTAIL=PHEAD;
-	printf("è¯·è¾“å…¥ä½ è¦ç”Ÿæˆçš„é“¾è¡¨èŠ‚ç‚¹ä¸ªæ•°ï¼š");
+	printf("ÇëÊäÈëÄãÒªÉú³ÉµÄÁ´±í½Úµã¸öÊı£º");
 	scanf("%d",&len);
 	for(i=0;i<len;i++)
 	{
-		printf("\nè¯·è¾“å…¥ç¬¬%dä¸ªèŠ‚ç‚¹çš„æ•°æ®ï¼š",i+1);
+		printf("\nÇëÊäÈëµÚ%d¸ö½ÚµãµÄÊı¾İ£º",i+1);
 		scanf("%d",&value);
 		PNEW=(NODE *)malloc(sizeof(NODE));
 		PNEW->data=value;
@@ -153,5 +154,20 @@ void sort_list(NODE *phead)
 		}
 	    pmax=pmax->pnext;
 		phead=pmax->pnext;
+	}
+}
+
+bool find_list(NODE *phead,int val){
+	NODE* tmp=phead;
+	while(tmp->pnext != NULL){
+		if( tmp->data == val){
+			return true;
+		}
+		tmp=tmp->pnext;
+	}
+	if( tmp->data == val){
+		return true;
+	}else{
+		return false;
 	}
 }
